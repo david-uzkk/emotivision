@@ -20,6 +20,7 @@ def extract_frames(video_path, output_dir, fps=1):
     print(f"🎬 Total Frames: {total_frames}")
     print(f"⏱️ Duration: {duration:.2f} seconds")
 
+    # Calculate frame interval
     frame_interval = int(fps_original / fps)
     print(f"⚙️ Frame interval for extraction: {frame_interval}")
 
@@ -30,11 +31,14 @@ def extract_frames(video_path, output_dir, fps=1):
     count_read = 0
 
     print("🔄 Starting frame extraction...")
+
+    # Read through the video frames
     while True:
         ret, frame = video.read()
         if not ret:
             break
-
+        
+        # Determine if this frame should be saved
         if count_read % frame_interval == 0:
             file_name = f"frame_{count_extracted:04d}.jpg"
             dir_complete = os.path.join(output_dir, file_name)
