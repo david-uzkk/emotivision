@@ -58,7 +58,7 @@ def process_batch(list_images, show_progress=True):
     if show_progress:
         iterator = tqdm(list_images, desc="Detecting Emotions")
     else:
-        iterator = list_imagesmacarrãopas
+        iterator = list_images
 
     for image_path in iterator:
         result = detect_emotions_in_images(image_path)
@@ -75,7 +75,7 @@ def process_batch(list_images, show_progress=True):
     return results
 
 # Process all images in a specified folder
-def process_folder(folder_frames)
+def process_folder(folder_frames):
     """
     """
     # Gather all image files in the folder
