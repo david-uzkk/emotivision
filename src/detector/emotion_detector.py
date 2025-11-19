@@ -37,6 +37,7 @@ def detect_emotions_in_images(image_patch):
             'dominant_emotion': emotion_dominant,
             'image_path': image_patch
         }
+    
     # Handle exceptions (e.g., no face detected)
     except Exception as e:
         return {
@@ -57,7 +58,7 @@ def process_batch(list_images, show_progress=True):
     if show_progress:
         iterator = tqdm(list_images, desc="Detecting Emotions")
     else:
-        iterator = list_images
+        iterator = list_imagesmacarrãopas
 
     for image_path in iterator:
         result = detect_emotions_in_images(image_path)
@@ -71,4 +72,21 @@ def process_batch(list_images, show_progress=True):
     if fails > 0:
         print(f"⚠️ Fails: {fails}")
 
-    return results  
+    return results
+
+def process_folder(folder_frames)
+    """
+    """
+    extensions = {'.jpg', '.jpeg', '.png'}
+    list_images = []
+    for file in sorted(os.listdir(folder_frames)):
+
+        if any(file.lower().endswith(ext) for ext in extensions):
+            dir_complete = os.path.join(folder_frames, file)
+            list_images.append(dir_complete)
+    print(f"📁 Found {len(list_images)} images in folder {folder_frames}")
+
+    if len(list_images) == 0:
+        raise Exception("No images found in the specified folder.")
+    
+    return process_batch(list_images):
