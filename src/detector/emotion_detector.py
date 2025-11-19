@@ -74,11 +74,15 @@ def process_batch(list_images, show_progress=True):
 
     return results
 
+# Process all images in a specified folder
 def process_folder(folder_frames)
     """
     """
+    # Gather all image files in the folder
     extensions = {'.jpg', '.jpeg', '.png'}
     list_images = []
+
+    # Iterate through files in the folder
     for file in sorted(os.listdir(folder_frames)):
 
         if any(file.lower().endswith(ext) for ext in extensions):
@@ -86,7 +90,20 @@ def process_folder(folder_frames)
             list_images.append(dir_complete)
     print(f"📁 Found {len(list_images)} images in folder {folder_frames}")
 
+    # Raise an exception if no images are found
     if len(list_images) == 0:
         raise Exception("No images found in the specified folder.")
     
-    return process_batch(list_images):
+    return process_batch(list_images)
+
+#
+def save_results(results, output_patch):
+    """
+    """
+
+    Path(output_patch).parent.mkdir(parents=True, exist_ok=True)
+
+    # Save results to a JSON file
+    with open(output_patch, 'w', encoding='utf-8') as f:
+        json.dump(results, f, ensure_ascii=False, indent=2)
+    print(f"💾 Results saved to {output_patch}" )
