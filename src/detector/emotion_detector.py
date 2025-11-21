@@ -2,6 +2,7 @@ from deepface import DeepFace
 import cv2
 import os
 from pathlib import Path
+import numpy as np
 import json
 
 from tqdm import tqdm
@@ -103,7 +104,17 @@ def save_results(results, output_patch):
 
     Path(output_patch).parent.mkdir(parents=True, exist_ok=True)
 
+    class NumpyEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, np.integer):
+                return int(obj)
+            elif isinstance(obj, np.floating):
+                return float(obj)
+            elif isinstance(obj, np.ndarray):
+                return obj.tolist()
+            return super(NumpyEncoder, self).default(obj)
+
     # Save results to a JSON file
     with open(output_patch, 'w', encoding='utf-8') as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
+        json.dump(results, f, ensure_ascii=False, indent=2, cls=NumpyEncoder)
     print(f"💾 Results saved to {output_patch}" )

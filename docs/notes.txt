@@ -1,0 +1,7 @@
+como assim emoção dominante? e normalizar valores
+ - as emoções são complexas, não são apenas feliz ou triste, vc pode expressar mais de uma emoção, então o app analisa e normaliza isso para ver qual é a dominante. 
+ normalizar é colocar em porcentagem e analisar a maior.
+
+fps(no codigo) = é o parametro que usuaria passa de quantos frames por segundo ele quer salvar 
+cv2.CAP_PROP_FPS = verifica a taxa original de quadros por segundo do video
+cv2.CAP_PROP_FRAME_COUNT = CALCULA O NUMERO TOTAL DE FRAMES DO ARQUIVO
